@@ -18,10 +18,15 @@ async function fetchCategoryProducts (categoryId, maxProducts) {
               url
               label
             }
+          ... on SimpleProductView {
+              price {
+                final { amount { value currency } }
+              }
           }
         }
       }
     }
+  }
   `;
 
   const { data } = await CS_FETCH_GRAPHQL.fetchGraphQl(query, {
@@ -58,7 +63,8 @@ export default async function decorate (block) {
     productsContainer.innerHTML = products.map((item) => {
       const product = item.productView;
       const image = product.images?.[0];
-      const price = product.price?.final?.amount;
+      const price = product.price?.final?.amount
+        || product.priceRange?.minimum?.final?.amount;
       const productUrl = getProductLink(product.urlKey, product.sku);
       return `
         <a class="promo-banner__product" href="${productUrl}">
