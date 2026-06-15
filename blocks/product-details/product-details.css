@@ -122,6 +122,13 @@
     margin-top: 0.25rem;
   }
 
+  .pdp-new {
+    font-size: 2rem;
+    color: #d21a88;
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+
   .product-details__stock {
     font-size: 1.5rem;
     font-weight: 600;
