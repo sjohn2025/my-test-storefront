@@ -149,19 +149,6 @@ export default async function decorate(block) {
     $tagline.textContent ='Free shipping on orders over $50';
   }
 
-  // events.on('pdp/data', (product) => {
-  //   if (!product) return;
-  //   console.log("Sheila testing");
-  //   console.log(product);
-  //   if (product.new) {
-  //     $new.textContent ='I AM NEW';
-  //     $new.className ='product-details__new pdp-new';
-  //   } else {
-  //     $new.textContent ='';
-  //     $new.className ='';
-  //   }
-  //   }, { eager: true });
-
   events.on('pdp/data', (product) => {
     if (!product) return;
 console.log('### pdp/data product:', product);
