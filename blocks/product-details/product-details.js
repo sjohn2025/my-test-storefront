@@ -148,9 +148,34 @@ export default async function decorate(block) {
   if ($tagline) {
     $tagline.textContent ='Free shipping on orders over $50';
   }
-  if ($new) {
-    $new.textContent ='I AM NEW - PLACEHOLDER';
-  }
+
+  // events.on('pdp/data', (product) => {
+  //   if (!product) return;
+  //   console.log("Sheila testing");
+  //   console.log(product);
+  //   if (product.new) {
+  //     $new.textContent ='I AM NEW';
+  //     $new.className ='product-details__new pdp-new';
+  //   } else {
+  //     $new.textContent ='';
+  //     $new.className ='';
+  //   }
+  //   }, { eager: true });
+
+  events.on('pdp/data', (product) => {
+    if (!product) return;
+console.log('### pdp/data product:', product);
+    const newsToDate = product.attributes?.find((attr) => attr.id === 'news_to_date')?.value;
+    if (newsToDate) {
+      $new.textContent = 'I AM NEW';
+      $new.className = 'product-details__new pdp-new';
+    } 
+    // else {
+    //   $new.textContent = 'I AM OLD' + newsToDate;
+    //   $new.className = 'product-details__new pdp-new';
+    // }
+  }, { eager: true });
+
   events.on('pdp/data', (product) => {
     if (!product) return;
     if (product.inStock) {
